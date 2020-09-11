@@ -1,0 +1,15 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Modules zos_operator
+    ############################################################################
+    - name: Execute TSO command list BR20396 to obtain TSO information
+      zos_tso_command:
+          commands:
+               - LU BR20396

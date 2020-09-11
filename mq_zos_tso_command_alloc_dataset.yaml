@@ -1,0 +1,15 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Modules tso_command
+    ############################################################################
+    - name: Execute TSO commands to allocate a new dataset
+      zos_tso_command:
+          commands:
+               - alloc da('MQM.TEST.ALESS') like('MQM.EE4Q.JCL')

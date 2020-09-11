@@ -1,0 +1,14 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Modules zos_job_output
+    ############################################################################
+    - name: JES Job output without ddname
+      zos_job_output:
+        job_id: "JOB15161"

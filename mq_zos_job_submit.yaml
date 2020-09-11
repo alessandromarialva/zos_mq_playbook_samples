@@ -1,0 +1,18 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Modules zos_job_submit, zos_job_query, zos_job_output, zos_data_set
+    # ##########################################################################
+    - name: Submit jcl located on target in data set
+      zos_job_submit:
+        src: MQM.EE4Q.JCL(MQAUTOHC)
+        location: DATA_SET
+        wait: True
+        return_output: true
+      register: job_detail

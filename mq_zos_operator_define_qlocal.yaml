@@ -1,0 +1,14 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Modules zos_operator
+    ############################################################################
+    - name: Execute any MQSC command on the target IBM MQ installation
+      zos_operator:
+              cmd: "\\##EE4Q DEFINE QLOCAL(ALESS.TEST.ZOS) DESCR('Local_queue_for_Ansible_tests')"

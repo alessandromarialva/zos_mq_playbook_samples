@@ -1,0 +1,14 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Modules zos_operator
+    ############################################################################
+    - name: Execute an operator command to purge all job logs (requires escaping)
+      zos_operator:
+        cmd: "\\d iplinfo"

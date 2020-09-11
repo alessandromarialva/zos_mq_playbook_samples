@@ -1,0 +1,18 @@
+---
+- hosts: all
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    # ##########################################################################
+    # Module Ping to see if the target is available
+    # ##########################################################################
+    - name: Ping host - {{ inventory_hostname }}
+      ping:
+      register: result
+
+    - name: Response
+      debug:
+        msg: "{{ result.ping }}"
